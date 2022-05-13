@@ -20,6 +20,7 @@ function computerPlay() {
       result = "Scissor";
   }
 
+  console.log(result);
   return result;
 }
 
@@ -28,25 +29,82 @@ function computerPlay() {
 //per essere case sensitive rendo tutta l'ipotetica stringa
 //in lowercase così so quale sarà la stringa che riceveremo
 
-function singleRound(playerSelection, computerSelection) {
+function singleRound(player, pc) {
   let result = "";
 
-  playerSelection = playerSelection.toLowerCase();
+  //TODO: RISOLVILO CON UNA REGEXP DI MER* credo si usi .match
 
-  //TODO: RISOLVILO CON UNA REGEXP DI MER*
-
-  if (playerSelection === "rock") {
-    if (computerSelection === "Paper") {
+  //Cosa succede se il player sceglie "rock"?
+  if (player === "rock") {
+    if (pc === "Paper") {
       result = "You Lose! Paper beats Rock";
+    } else if (pc === "Scissor") {
+      result = "You Win! Rock beats Paper";
+    } else {
+      result = "You Tie! Rock vs Rock is a tie";
     }
+    //Cosa succede se il player sceglie "paper"?
+  } else if (player === "paper") {
+    if (pc === "Paper") {
+      result = "You Tie! Paper vs Paper is a tie";
+    } else if (pc === "Scissor") {
+      result = "You Lose! Scissor beats Paper";
+    } else {
+      result = "You Win! Paper beats Rock";
+    }
+    //Cosa succede se il player sceglie "scissor"?
+  } else if (player === "scissor") {
+    if (pc === "Paper") {
+      result = "You Win! Scissor beats Paper";
+    } else if (pc === "Scissor") {
+      result = "You Tie! Scissor vs Scissor is a tie";
+    } else {
+      result = "You Lose! Rock beats Scissor";
+    }
+    //Cosa succede se il player inserisce cose strane?
+  } else {
+    result = "Please, choose only between: Rock, Paper and Scissor";
   }
 
-  //   ("You Lose! Scissor beats Paper");
-  //   ("You Lose! Rock beats Scissor");
+  console.log(result);
   return result;
 }
 
-let playerSelection = "rock";
+//Definiamo alcuni parametri che passeremo
+//alla funzione come le scelte effettuate
+
+let playerSelection = prompt("Choose").toLowerCase();
 let computerSelection = computerPlay();
 
-console.log(singleRound(playerSelection, computerSelection));
+// function game() {
+//   let pcScore = 0;
+//   let playerScore = 0;
+
+//   for (let i = 0; i < 5; i++) {
+//     singleRound(playerSelection, computerSelection);
+
+//     // if() {
+//     //   pcScore++;
+//     // }else {
+//     //   playerScore++;
+//     // }
+//   }
+
+//   if (pcScore > playerScore) {
+//     return "The Winner is the Player! :D";
+//   } else {
+//     return "The Winner is the Machine! D:";
+//   }
+// }
+
+// console.log(game());
+
+/*
+
+serve un counter per le nostre vittore
+e un counter per le vittorie del pc
+quando uno dei due valori arriva a 5 la partita mostra il vincitore
+
+Come faccio aumentare lo score interno a game?
+
+*/
