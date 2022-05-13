@@ -1,5 +1,4 @@
 //Funzione che determina la scelta randomica effettuata dal computer
-
 function computerPlay() {
   let random = Math.floor(Math.random() * 3);
   //Mettendo nella moltiplicazione il 3 andremo a dire che
@@ -7,6 +6,7 @@ function computerPlay() {
 
   let result = "";
 
+  //Trasformiamo i numeri in parole
   switch (random) {
     case 0:
       result = "Rock";
@@ -20,19 +20,13 @@ function computerPlay() {
       result = "Scissor";
   }
 
-  console.log(result);
+  console.log(`The PC choose: ${result}`);
   return result;
 }
 
-//Funzione che determina un singolo round di gioco.
-//Per ora non sono riuscito a creare una Regular Expression
-//per essere case sensitive rendo tutta l'ipotetica stringa
-//in lowercase così so quale sarà la stringa che riceveremo
-
+//Funzione che fa partire il gioco
 function singleRound(player, pc) {
   let result = "";
-
-  //TODO: RISOLVILO CON UNA REGEXP DI MER* credo si usi .match
 
   //Cosa succede se il player sceglie "rock"?
   if (player === "rock") {
@@ -61,7 +55,7 @@ function singleRound(player, pc) {
     } else {
       result = "You Lose! Rock beats Scissor";
     }
-    //Cosa succede se il player inserisce cose strane?
+    //Cosa succede se il player inserisce cose strane
   } else {
     result = "Please, choose only between: Rock, Paper and Scissor";
   }
@@ -70,41 +64,44 @@ function singleRound(player, pc) {
   return result;
 }
 
-//Definiamo alcuni parametri che passeremo
-//alla funzione come le scelte effettuate
+// Creiamo una partita che dura 5 round;
+function game() {
+  let pcScore = 0;
+  let playerScore = 0;
 
-let playerSelection = prompt("Choose").toLowerCase();
-let computerSelection = computerPlay();
+  while (pcScore !== 5 && playerScore !== 5) {
+    let playerSelection = prompt("Choose");
 
-// function game() {
-//   let pcScore = 0;
-//   let playerScore = 0;
+    if (playerSelection === null) {
+      break;
+    }
 
-//   for (let i = 0; i < 5; i++) {
-//     singleRound(playerSelection, computerSelection);
+    playerSelection = playerSelection.toLocaleLowerCase();
 
-//     // if() {
-//     //   pcScore++;
-//     // }else {
-//     //   playerScore++;
-//     // }
-//   }
+    let comparison = singleRound(playerSelection, computerPlay());
 
-//   if (pcScore > playerScore) {
-//     return "The Winner is the Player! :D";
-//   } else {
-//     return "The Winner is the Machine! D:";
-//   }
-// }
+    comparison = comparison.slice(0, 8);
 
-// console.log(game());
+    if (comparison === "You Lose") {
+      pcScore++;
+    } else if (comparison === "You Win!") {
+      playerScore++;
+    }
+    console.log(`Pc Score: ${pcScore} -`, `Player Score: ${playerScore}`);
+  }
 
-/*
+  if (pcScore < playerScore) {
+    console.log("You Win! C:");
+    alert("The Winner is the Player! :D");
+  } else if (pcScore > playerScore) {
+    console.log("You Lose! :C");
+    alert("The Winner is the Machine! D:");
+  }
+}
 
-serve un counter per le nostre vittore
-e un counter per le vittorie del pc
-quando uno dei due valori arriva a 5 la partita mostra il vincitore
+game();
 
-Come faccio aumentare lo score interno a game?
+//FIXME: CON UNA REGEXP DOVREBBE essere player.match(/^\s*(?:rock|paper|scissors)\s*$/i)
 
-*/
+//TODO: Serve per avviare un game singolo.
+// singleRound(playerSelection, computerPlay());
