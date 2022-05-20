@@ -14,39 +14,51 @@
   </head>
 
   <body>
+    <!-- HEADER -->
     <header class="header p-x">
       <div class="container">
         <h1 class="title">Rock Paper Scissors</h1>
       </div>
     </header>
 
+    <!-- MAIN -->
     <main class="main p-x">
-      <h2>Rock, Paper or Scissor?</h2>
-      <h3>First to score 5 points wins the game</h3>
+      <div class="container">
+        <h2>Rock, Paper or Scissors?</h2>
 
-      <section class="choice">
-        <div id="player-choice">
-          <div class="emoji player">❔</div>
-          <p class="score player">Player: 0</p>
-        </div>
+        <h3>First to score 5 points wins the game</h3>
 
-        <div id="computer-choice">
-          <div class="emoji computer">❔</div>
-          <p class="score computer">Computer: 0</p>
-        </div>
-      </section>
+        <!-- ROCK, PAPER OR SCISSORS -->
+        <section class="choices">
+          <div id="player-choice">
+            <div class="emoji player">❔</div>
 
-      <section class="cards">
-        <button class="rock card">👊🏻</button>
+            <p class="score player">Player: 0</p>
+          </div>
 
-        <button class="paper card">✋🏻</button>
+          <div id="computer-choice">
+            <div class="emoji computer">❔</div>
 
-        <button class="scissore card">✌🏻</button>
-      </section>
+            <p class="score computer">Computer: 0</p>
+          </div>
+        </section>
+
+        <!-- PLAYER CHOICE -->
+        <section class="cards">
+          <button class="rock card">👊🏻</button>
+
+          <button class="paper card">✋🏻</button>
+
+          <button class="scissore card">✌🏻</button>
+        </section>
+      </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer p-x">
-      <p>Copyright &copy; 2022 ArmandoCrn</p>
+      <div class="container">
+        <p>Copyright &copy; 2022 ArmandoCrn</p>
+      </div>
     </footer>
   </body>
 </html>
