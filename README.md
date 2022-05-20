@@ -1,1 +1,1 @@
-# First Javascript Project - Rock Paper Scisson.
+# First Javascript Project - Rock Paper Scissors.
