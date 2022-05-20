@@ -1,1 +1,1 @@
-# First Javascript Project - Rock Paper Scisson in console.log().
+# First Javascript Project - Rock Paper Scisson.
