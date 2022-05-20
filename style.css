@@ -13,8 +13,6 @@
   --light-blue: #475466;
   --yellow: #fac650;
   --red: #db3f59;
-  --colore2: #62b49c;
-  --colore3: #8070ac;
 }
 
 /*==========
@@ -76,7 +74,15 @@ body {
   text-align: center;
 }
 
-.card {
+.emoji {
+  font-size: 3rem;
+}
+
+.score {
+  font-size: 1.1rem;
+}
+
+.cards .emoji {
   background-color: var(--light-blue);
 }
 
@@ -107,7 +113,7 @@ body {
 /* +-- CHOICES --+  */
 
 .choices {
-  margin-block: 2rem;
+  margin-top: 2.5rem;
   max-width: 250px;
   margin-inline: auto;
   display: flex;
@@ -122,12 +128,20 @@ body {
   gap: 1rem;
 }
 
-.emoji {
-  font-size: 3rem;
+/* +-- CARDS --+  */
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
 }
 
-.score {
-  font-size: 1.1rem;
+.cards .emoji {
+  height: 100px;
+  width: 100px;
+  border: none;
+  border-radius: 18px;
 }
 
 /*==============
@@ -157,6 +171,11 @@ body {
   .score {
     font-size: 1.3rem;
     font-weight: bold;
+  }
+
+  .cards .emoji {
+    height: 160px;
+    width: 160px;
   }
 }
 
