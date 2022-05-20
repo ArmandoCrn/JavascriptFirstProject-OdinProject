@@ -99,7 +99,7 @@ function game() {
   }
 }
 
-game();
+// game();
 
 //FIXME: CON UNA REGEXP DOVREBBE essere player.match(/^\s*(?:rock|paper|scissors)\s*$/i)
 
