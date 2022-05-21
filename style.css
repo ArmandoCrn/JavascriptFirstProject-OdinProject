@@ -109,13 +109,14 @@ body {
   font-size: 1.4rem;
 }
 
-.modal-container {
-  background-color: rgba(0, 0, 0, 0.3);
+#modal {
+  background-color: var(--deep-blue);
+  color: inherit;
+  text-align: center;
 }
 
-.modal {
-  background-color: var(--deep-blue);
-  text-align: center;
+#modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 #result {
@@ -215,29 +216,50 @@ body {
 
 /* +-- MODAL --+  */
 
-.modal-container.none {
-  display: none;
+#modal {
+  user-select: none;
+  padding: 0;
+  border: none;
+  border-radius: 15px;
 }
 
-.modal-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-height: 100vh;
-  min-width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#modal[open] {
+  animation: fade-in 500ms forwards;
+}
+
+#modal[open]::backdrop {
+  animation: fade-in 500ms forwards;
+}
+
+#modal[closing] {
+  display: block;
+  pointer-events: none;
+  inset: 0;
+  animation: fade-in 500ms forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .modal {
-  min-width: 250px;
-  min-height: 150px;
-  border-radius: 15px;
   padding: 2rem 3rem;
-
-  /* display: flex;
-  flex-direction: column; */
 }
 
 #result {

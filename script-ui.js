@@ -16,12 +16,15 @@ const scorePlayer = document.querySelector("#score-player");
 const scoreComputer = document.querySelector("#score-computer");
 
 // - MODAL -
-const modal = document.querySelector(".modal-container");
+const modal = document.querySelector("#modal");
+const modalResult = document.querySelector("#result");
+const btnAgain = document.querySelector("#again");
 
 // Click e succedono cose
 rockBtn.addEventListener("click", () => fiveGame("rock"));
 paperBtn.addEventListener("click", () => fiveGame("paper"));
 scissorsBtn.addEventListener("click", () => fiveGame("scissors"));
+btnAgain.addEventListener("click", newGame);
 
 /*============
   FUNCTIONS
@@ -31,7 +34,7 @@ scissorsBtn.addEventListener("click", () => fiveGame("scissors"));
 let playerScore = 0;
 let computerScore = 0;
 
-// Partite
+// 5 Partite
 function fiveGame(player) {
   if (player === "rock") {
     playerRock();
@@ -46,8 +49,30 @@ function fiveGame(player) {
   }
 }
 
+// New Game
+function newGame() {
+  scoreInfo.innerText = "Rock, Paper or Scissors?";
+  scoreResult.innerText = "First to score 5 points wins the game";
+  playerEmoji.innerText = "❔";
+  computerEmoji.innerText = "❔";
+  scorePlayer.innerText = "0";
+  scoreComputer.innerText = "0";
+  modal.close();
+
+  playerScore = 0;
+  computerScore = 0;
+}
+
 // Stop all
-function stop() {}
+function stop() {
+  if (playerScore === 5) {
+    modalResult.innerText = "You Won!";
+  } else if (computerScore === 5) {
+    modalResult.innerText = "You lost...";
+  }
+
+  modal.showModal();
+}
 
 // Scelta del player: Rock
 function playerRock() {
