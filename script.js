@@ -65,39 +65,39 @@ function singleRound(player, pc) {
 }
 
 // Creiamo una partita che dura 5 round;
-function game() {
-  let pcScore = 0;
-  let playerScore = 0;
+// function game() {
+//   let pcScore = 0;
+//   let playerScore = 0;
 
-  while (pcScore !== 5 && playerScore !== 5) {
-    let playerSelection = prompt("Choose");
+//   while (pcScore !== 5 && playerScore !== 5) {
+//     let playerSelection = prompt("Choose");
 
-    if (playerSelection === null) {
-      break;
-    }
+//     if (playerSelection === null) {
+//       break;
+//     }
 
-    playerSelection = playerSelection.toLocaleLowerCase();
+//     playerSelection = playerSelection.toLocaleLowerCase();
 
-    let comparison = singleRound(playerSelection, computerPlay());
+//     let comparison = singleRound(playerSelection, computerPlay());
 
-    comparison = comparison.slice(0, 8);
+//     comparison = comparison.slice(0, 8);
 
-    if (comparison === "You Lose") {
-      pcScore++;
-    } else if (comparison === "You Win!") {
-      playerScore++;
-    }
-    console.log(`Pc Score: ${pcScore} -`, `Player Score: ${playerScore}`);
-  }
+//     if (comparison === "You Lose") {
+//       pcScore++;
+//     } else if (comparison === "You Win!") {
+//       playerScore++;
+//     }
+//     console.log(`Pc Score: ${pcScore} -`, `Player Score: ${playerScore}`);
+//   }
 
-  if (pcScore < playerScore) {
-    console.log("You Win! C:");
-    alert("The Winner is the Player! :D");
-  } else if (pcScore > playerScore) {
-    console.log("You Lose! :C");
-    alert("The Winner is the Machine! D:");
-  }
-}
+//   if (pcScore < playerScore) {
+//     console.log("You Win! C:");
+//     alert("The Winner is the Player! :D");
+//   } else if (pcScore > playerScore) {
+//     console.log("You Lose! :C");
+//     alert("The Winner is the Machine! D:");
+//   }
+// }
 
 // game();
 
