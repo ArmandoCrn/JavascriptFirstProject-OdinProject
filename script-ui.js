@@ -26,6 +26,8 @@ paperBtn.addEventListener("click", () => fiveGame("paper"));
 scissorsBtn.addEventListener("click", () => fiveGame("scissors"));
 btnAgain.addEventListener("click", newGame);
 
+window.addEventListener("keydown", noEscape);
+
 /*============
   FUNCTIONS
 ============*/
@@ -109,6 +111,13 @@ function playerRock() {
   scoreResult.innerText = resultScore;
   playerEmoji.innerText = "👊🏻";
   computerEmoji.innerText = emojiComputer;
+}
+
+// Non si può uscire dal game over
+function noEscape(e) {
+  if (e.keyCode === 27) {
+    e.preventDefault();
+  }
 }
 
 // Scelta del player: Paper
