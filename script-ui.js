@@ -76,6 +76,13 @@ function stop() {
   modal.showModal();
 }
 
+// Non si può uscire dal game over
+function noEscape(e) {
+  if (e.keyCode === 27) {
+    e.preventDefault();
+  }
+}
+
 // Scelta del player: Rock
 function playerRock() {
   let computer = computerPlay();
@@ -111,13 +118,6 @@ function playerRock() {
   scoreResult.innerText = resultScore;
   playerEmoji.innerText = "👊🏻";
   computerEmoji.innerText = emojiComputer;
-}
-
-// Non si può uscire dal game over
-function noEscape(e) {
-  if (e.keyCode === 27) {
-    e.preventDefault();
-  }
 }
 
 // Scelta del player: Paper
