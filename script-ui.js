@@ -36,14 +36,21 @@ window.addEventListener("keydown", noEscape);
 let playerScore = 0;
 let computerScore = 0;
 
+// Non si può uscire dal game over
+function noEscape(e) {
+  if (e.keyCode === 27) {
+    e.preventDefault();
+  }
+}
+
 // 5 Partite
 function fiveGame(player) {
   if (player === "rock") {
-    playerRock();
+    game("rock");
   } else if (player === "paper") {
-    playerPaper();
+    game("paper");
   } else {
-    playerScissors();
+    game("scissors");
   }
 
   if (playerScore === 5 || computerScore === 5) {
@@ -76,50 +83,7 @@ function stop() {
   modal.showModal();
 }
 
-// Non si può uscire dal game over
-function noEscape(e) {
-  if (e.keyCode === 27) {
-    e.preventDefault();
-  }
-}
-
-// Scelta del player: Rock
-function playerRock() {
-  let computer = computerPlay();
-  let resultInfo = "";
-  let resultScore = "";
-  let emojiComputer = "";
-
-  switch (computer) {
-    case "rock":
-      resultInfo = "It's a tie!";
-      resultScore = "Rock ties with Rock";
-      emojiComputer = "👊🏻";
-      break;
-
-    case "paper":
-      resultInfo = "You lost!";
-      resultScore = "Rock is beaten by Paper";
-      emojiComputer = "✋🏻";
-      computerScore++;
-      scoreComputer.innerText = computerScore;
-      break;
-
-    case "scissors":
-      resultInfo = "You won!";
-      resultScore = "Rock beats Scissors";
-      emojiComputer = "✌🏻";
-      playerScore++;
-      scorePlayer.innerText = playerScore;
-      break;
-  }
-
-  scoreInfo.innerText = resultInfo;
-  scoreResult.innerText = resultScore;
-  playerEmoji.innerText = "👊🏻";
-  computerEmoji.innerText = emojiComputer;
-}
-
+// One game
 function game(player) {
   let computer = computerPlay();
 
@@ -131,144 +95,65 @@ function game(player) {
         tie("Rock", "Rock");
         computerEmoji.innerText = "👊🏻";
       } else if (computer === "paper") {
-      } else if (compute === "scissors") {
+        lose("Rock", "Paper");
+        computerEmoji.innerText = "✋🏻";
+      } else if (computer === "scissors") {
+        win("Rock", "Scossors");
+        computerEmoji.innerText = "✌🏻";
       }
       break;
 
     case "paper":
+      playerEmoji.innerText = "✋🏻";
+
+      if (computer === "rock") {
+        win("Paper", "Rock");
+        computerEmoji.innerText = "👊🏻";
+      } else if (computer === "paper") {
+        tie("Paper", "Paper");
+        computerEmoji.innerText = "✋🏻";
+      } else if (computer === "scissors") {
+        lose("Paper", "Scissors");
+        computerEmoji.innerText = "✌🏻";
+      }
+      break;
+
+    case "scissors":
+      playerEmoji.innerText = "✌🏻";
+
+      if (computer === "rock") {
+        lose("Scissors", "Rock");
+        computerEmoji.innerText = "👊🏻";
+      } else if (computer === "paper") {
+        win("Scissors", "Paper");
+        computerEmoji.innerText = "✋🏻";
+      } else if (computer === "scissors") {
+        tie("Scissors", "Scissors");
+        computerEmoji.innerText = "✌🏻";
+      }
       break;
   }
 }
 
-// function win(player, computer) {
-//   resultInfo = "You won!";
-//   resultScore = `${player} beats ${computer}`;
-//   playerScore++;
-//   scorePlayer.innerText = playerScore;
-
-// }
+// What appen when you choose?
+function win(player, computer) {
+  scoreInfo.innerText = "You won!";
+  scoreResult.innerText = `${player} beats ${computer}`;
+  playerScore++;
+  scorePlayer.innerText = playerScore;
+}
 
 function tie(player, computer) {
   scoreInfo.innerText = "It's a tie!";
   scoreResult.innerText = `${player} ties with ${computer}`;
 }
 
-// function lose(player, computer) {
-//   resultInfo = "You lost!";
-//   resultScore = `${player} is beaten by ${computer}`;
-//   computerScore++;
-//   scoreComputer.innerText = computerScore;
-// }
-
-/*
-
-function fiveGame(player) {
-  if (player === "rock") {
-    game("rock");
-  } 
-  
-  
-  
-  
-  else if (player === "paper") {
-    playerPaper();
-  } else {
-    playerScissors();
-  }
-
-  if (playerScore === 5 || computerScore === 5) {
-    stop();
-  }
+function lose(player, computer) {
+  scoreInfo.innerText = "You lost!";
+  scoreResult.innerText = `${player} is beaten by ${computer}`;
+  computerScore++;
+  scoreComputer.innerText = computerScore;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-
-// // Scelta del player: Paper
-// function playerPaper() {
-//   let computer = computerPlay();
-//   let resultInfo = "";
-//   let resultScore = "";
-//   let emojiComputer = "";
-
-//   switch (computer) {
-//     case "rock":
-//       resultInfo = "You won!";
-//       resultScore = "Rock beats Paper";
-//       emojiComputer = "👊🏻";
-//       playerScore++;
-//       scorePlayer.innerText = playerScore;
-//       break;
-
-//     case "paper":
-//       resultInfo = "It's a tie!";
-//       resultScore = "Paper ties with Paper";
-//       emojiComputer = "✋🏻";
-//       break;
-
-//     case "scissors":
-//       resultInfo = "You lost!";
-//       resultScore = "Paper is beaten by Scissors";
-//       emojiComputer = "✌🏻";
-//       computerScore++;
-//       scoreComputer.innerText = computerScore;
-//       break;
-//   }
-
-//   scoreInfo.innerText = resultInfo;
-//   scoreResult.innerText = resultScore;
-//   playerEmoji.innerText = "✋🏻";
-//   computerEmoji.innerText = emojiComputer;
-//   return resultInfo;
-// }
-
-// // Scelta del player: Scissors
-// function playerScissors() {
-//   let computer = computerPlay();
-//   let resultInfo = "";
-//   let resultScore = "";
-//   let emojiComputer = "";
-
-//   switch (computer) {
-//     case "rock":
-//       resultInfo = "You lost!";
-//       resultScore = "Scissors is beaten by Rock";
-//       emojiComputer = "👊🏻";
-//       computerScore++;
-//       scoreComputer.innerText = computerScore;
-//       break;
-
-//     case "paper":
-//       resultInfo = "You won!";
-//       resultScore = "Scissors beats Paper";
-//       emojiComputer = "✋🏻";
-//       playerScore++;
-//       scorePlayer.innerText = playerScore;
-//       break;
-
-//     case "scissors":
-//       resultInfo = "It's a tie!";
-//       resultScore = "Scissors ties with Scissors";
-//       emojiComputer = "✌🏻";
-//       break;
-//   }
-
-//   scoreInfo.innerText = resultInfo;
-//   scoreResult.innerText = resultScore;
-//   playerEmoji.innerText = "✌🏻";
-//   computerEmoji.innerText = emojiComputer;
-//   return resultInfo;
-// }
 
 // Scelta Random del computer
 function computerPlay() {
